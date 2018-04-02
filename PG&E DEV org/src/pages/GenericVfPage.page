@@ -1,0 +1,12 @@
+<apex:page controller="Genericvfclass" action="{!fetchid}" lightningStylesheets="true" showHeader="false" sidebar="false" >
+<style>
+body{
+   margin-left : 20%;
+}
+.reportFooter {
+  
+    }
+</style>
+  <analytics:reportChart reportId="{!recid}" ></analytics:reportChart>
+
+</apex:page>

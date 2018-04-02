@@ -1,0 +1,39 @@
+<aura:component >
+    <aura:attribute name="settings" type="Object" />
+    <aura:attribute name="fadeTimeout" type="Integer" default="2000"/>
+    <!--aura:handler event="aura:doneRendering" action="{!c.doneRendering}"/> -->
+
+    <div class="slds-is-relative">
+        <section class="slds-popover slds-nubbin_top-left slds-dynamic-menu" role="dialog" aria-label="My Favourites" aria-describedby="dialog-body-id-11" style="position: absolute; left: -8px; top: 11px;">
+            <div class="slds-popover__body slds-p-horizontal_none" id="dialog-body-id-11">
+                <div id="listbox-unique-id" role="listbox">
+                    <ul class="slds-listbox slds-listbox_vertical slds-dropdown_length-10" role="group" aria-label="SAP Sync Details">
+                        <li role="presentation" class="slds-listbox__item">
+                            <div class="slds-media slds-listbox__option slds-listbox__option_plain" role="presentation">
+                                <h3 class="slds-text-title_caps" role="presentation">SAP Sync Details</h3>
+                            </div>
+                        </li>
+                        <li role="presentation" class="slds-listbox__item">
+                            <div id="listbox-option-id-41" class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option" tabindex="0">
+                                <span class="slds-media__figure">
+                                    <span class="slds-icon_container slds-icon-standard-survey" title="Description of icon when needed">
+                                        <lightning:icon iconName="standard:survey" alternativeText="Collpase Portfolio"  variant="bare" />    
+                                        <span class="slds-assistive-text">Description of icon when needed</span>
+                                    </span>
+                                </span>
+                                <span class="slds-media__body">
+                                    <span class="slds-listbox__option-text slds-listbox__option-text_entity">Record Count • {!v.settings.RC__c }</span>
+                                    <span class="slds-listbox__option-text slds-listbox__option-text_entity">Status • {!v.settings.Status__c}</span>
+                                    <span class="slds-listbox__option-text slds-listbox__option-text_entity">Start Time •
+                                        <lightning:formattedDateTime value="{!v.settings.SDST__c}" year="numeric" month="short" day="2-digit" hour="2-digit" minute="2-digit" second="2-digit"  />
+                                    </span> <!-- slds-listbox__option-meta slds-listbox__option-meta_entity -->
+                                    <span class="slds-listbox__option-text slds-listbox__option-text_entity">Sync with • {!v.settings.JO__c}</span>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</aura:component>

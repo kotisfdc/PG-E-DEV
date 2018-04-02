@@ -1,0 +1,43 @@
+<aura:component controller="JO_Portfolio" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+	<ltng:require scripts='/resource/JOGrid/pagtable/jquery.min.js,/resource/JOGrid/pagtable/jszip.min.js,/resource/JOGrid/pagtable/dx.all.js'
+                  styles='/resource/JOGrid/pagtable/dx.common.css,/resource/JOGrid/pagtable/dx.carmine.css,/resource/JOGrid/pagtable/dx.softblue.css'
+                   afterScriptsLoaded="{!c.scriptsLoaded}" />
+    
+    <aura:attribute name="sObjectName" type="String"/>
+    <aura:attribute name="fieldSetName" type="String"/>
+    <aura:attribute name="fieldSetValues" type="List"/>
+    <aura:attribute name="tableRecords" type="List"/>
+    <aura:attribute name="portfoliofields" type="List"/>
+    <aura:attribute name="viewname" type="string"/>
+    <aura:attribute name="criteriafield" type="String" default="OwnerId"/>
+    <aura:attribute name="FedIDs" type="List"/>
+    
+    <aura:attribute name="onetimeload" type="boolean" default="false"/> 
+    <aura:attribute name="viewId" type="String" />   
+    <aura:attribute name="contactIds" type="String[]"/>
+    <aura:attribute name="userConfigRec" type="Customer_Config__c"/>
+    <aura:attribute name="idWrapper" type="String" />
+	<aura:attribute name="Notificationdetails" type="Object"/>
+    <aura:attribute name="gridData" type="String" />
+    <aura:method name="fetchTaskEventData" action="{!c.scriptsLoaded}" access="GLOBAL">
+        <aura:attribute name="sObjectName" type="String" />   
+        <aura:attribute name="fieldSetValues" type="String[]"/>
+        <aura:attribute name="contactIds" type="String[]"/>
+        <aura:attribute name="userConfigRec" type="Customer_Config__c"/> 
+    </aura:method> 
+    
+    <aura:handler event="c:JO_TaskEvent" action="{!c.doInit}"/>
+    <aura:handler event="c:JO_PortfolioGridEvent" action="{!c.doInit1}"/>
+    <aura:handler event="c:JO_PortfolioTabEvent" action="{!c.doInit1}"/>
+    <!-- <aura:handler name="init" value="{!this}" action="{!c.scriptsLoaded}"/> -->
+   	<div id="tabs" style="padding-top:5px;">
+        <div class="tabs-container"></div>   
+    <div class="slds-card" style="padding: 5px;">
+        <div id="gridContainer"></div>
+    </div>    
+    </div>
+    <aura:attribute name="toggleSpinner" type="Boolean"/>
+    <aura:if isTrue="{!v.toggleSpinner}">
+       <lightning:spinner variant="brand"  size="large" />
+    </aura:if>
+</aura:component>

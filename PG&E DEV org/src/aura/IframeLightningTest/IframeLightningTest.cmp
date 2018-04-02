@@ -1,0 +1,9 @@
+<!--iframe-->
+<aura:component controller="IframeshowData" implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute name="inptText" type="String"/>
+    <aura:attribute name="ifmsrc" type="String"/>
+    <ui:inputText aura:id="input" label="Enter A Value:" value=""/>
+    Client-Side Value:<ui:outputText value="{!v.inptText}"/><br/>
+    <ui:button press="{!c.myAction}">Press</ui:button><br/><!--Ifraim should be reloaded on the press of this button-->
+    <iframe width="800" height="600" style="border: 1px solid" src="{!v.ifmsrc}" />
+</aura:component>

@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Json Delete Event">
+    <aura:attribute name="selectedJsonRow" Type="LIST"/>
+</aura:event>

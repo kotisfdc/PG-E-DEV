@@ -1,0 +1,83 @@
+<aura:component controller="JO_Communication_Template" implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="CommTemp" type="List" />
+    <aura:handler event="force:refreshView" action='{!c.doinit}'/>
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+            <tr class="slds-text-title_caps">
+                <th scope="col">
+                    <div class="slds-truncate slds-cell-wrap" style="text-align: -webkit-left;" title="Name"><b>Business Name</b></div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate slds-cell-wrap" style="text-align: -webkit-center;" title="Name"><b>Email Template</b></div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" style="text-align: -webkit-center;" title="Record Count"><b>Count</b></div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" style="text-align: -webkit-center;" title="Subject"><b>Sent By</b></div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" style="text-align: -webkit-center;" title="Last Sent"><b>Last Sent</b></div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" style="text-align: -webkit-center;" title= "Action" ><b>Action</b></div>
+                </th>
+            </tr>                
+        </thead>                                    
+        <tbody>
+            <aura:iteration items="{!v.CommTemp}" var="pf">                                            
+                <tr style="height:10px;line-height: 30px !important;">
+                    <td scope="row" > 
+                        <div class="slds-truncate">
+                            <div class="slds-truncate"  style="text-align: -webkit-left;" title="{!pf.EmailTemp.Business_Name__c}">{!pf.EmailTemp.Business_Name__c}</div>
+                        </div>
+                    </td>
+                    <td scope="row" > 
+                        <div class="slds-truncate">
+                            <div class="slds-truncate"  style="text-align: -webkit-center;" title="{!pf.EmailTemp.Name}">{!pf.EmailTemp.Name}</div>
+                        </div>
+                    </td>
+                    <td scope="row" > 
+                        <div class="slds-truncate" style="text-align: -webkit-center;">
+                            <ui:outputText class="slds-truncate" aura:id="count" value="{!pf.recordCount}" />
+                        </div>
+                    </td> 
+                    <td scope="row" > 
+                        <div class="slds-truncate">
+                            <div class="slds-truncate"  style="text-align: -webkit-center;" title="{!pf.SentByName}">{!pf.SentByName}</div>
+                        </div>
+                    </td>
+                    <td scope="row" > 
+                        <div class="slds-truncate" style="text-align: -webkit-center;">    
+                            <lightning:formattedDateTime value="{!pf.SentDate}" year="numeric" month="numeric" day="numeric"  hour="2-digit" minute="2-digit"/>
+                        </div>
+                    </td>
+                    <td scope="row" > 
+                        <div class="slds-truncate" >
+                            <div class="slds-text-align_center" title="{!pf.Name}">
+                                
+                                <lightning:buttonGroup >
+                                    <aura:renderIf isTrue="{!pf.EmailTemp.Is_Auto__c}">
+                                        <aura:set attribute="else">
+                                            <lightning:button iconName="action:email"  value="{!pf.EmailTemp.Email_Template__c+'#'+pf.recordCount+'#'+pf.EmailTemp.Id+'#'+pf.customerId +'#'+pf.EmailTemp.OpA__c}" onclick="{!c.sendEmailInfo}" label="" variant="bare"  type="button" title="Send Email" />
+                                        </aura:set>
+                                    </aura:renderIf>
+                                    
+                                    <aura:renderIf isTrue="{!pf.previewId}">
+                                        <lightning:button iconName="action:preview" value="{!pf.previewId}" onclick="{!c.displaydetailpage}" label="" variant="bare" type="button" title="View Sent Email" />
+                                        <aura:set attribute="else">
+                                        </aura:set>
+                                    </aura:renderIf>
+                                </lightning:buttonGroup>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+    <div aura:id="pfbody" />
+    <div aura:id="EmailDocs" />
+</aura:component>

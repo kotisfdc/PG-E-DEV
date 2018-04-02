@@ -1,0 +1,19 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                access="global" >
+    
+    <aura:attribute name="jsonDataList" type="LIST" />
+		<aura:attribute name="rowIndex" type="String" />
+
+		<!-- Register 2 Lightning Event for handle add or Delete rows on Parent Component  --> 
+
+		<aura:registerEvent name="AddRowEvt" type="c:JO_PortfolioAddNewRowEvt"/> 
+    
+    <!-- Table Row -->   
+		<tr class="slds-text-title_caps">
+			<td> 
+				{!v.rowIndex + 1}
+            
+            </td>
+    </tr>
+	
+</aura:component>

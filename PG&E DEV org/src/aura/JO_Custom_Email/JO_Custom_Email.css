@@ -1,0 +1,19 @@
+.THIS .uiInput--input .input .uiInput--input.input{
+    width: 378% !important;
+}
+.THIS .slds-p-around_medium .slds-p-around--medium {
+    padding: 0.5rem !important;
+}
+.THIS .input{
+    border-width: 0;
+   	width:35%;
+    padding-top: 0px;
+    padding-left: 11px;
+    line-height: 12px;
+    height: 25px;
+}
+.THIS input::selection {
+    background: white;
+    text-shadow: none;
+    color: none;
+}

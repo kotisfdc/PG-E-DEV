@@ -1,0 +1,11 @@
+.THIS .slds-tabs_default__item {
+   text-transform: capitalize !important;
+}
+
+.THIS .slds-button--icon-more{
+   background-color: #fafaf9;
+    border: none;
+    margin-top: -7px;
+    height: 24px;
+    margin-right: -31px;
+}

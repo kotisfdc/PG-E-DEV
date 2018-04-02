@@ -1,0 +1,9 @@
+<apex:page showheader="false" sidebar="false">
+<apex:outputPanel id="SalesfunnelDashboard" >
+     <script>
+     window.location.href="https://pespge03-dev-ed.lightning.force.com/01Z1N000001OsTQUA0";
+   
+       
+     </script>
+     </apex:outputPanel>
+</apex:page>

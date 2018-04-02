@@ -1,0 +1,211 @@
+<aura:component implements="force:appHostable,flexipage:availableForRecordHome,force:hasRecordId" 
+                access="global" controller="UserConfigController">
+    
+    <aura:registerEvent name="deleteJsonRow" type="c:AllTabDeleteEvent"/>
+    <aura:attribute name="recordId" type="Id" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="jsonDataList" type="LIST" />
+    <aura:attribute name="recordsCount" type="String" />
+    <aura:attribute name="selectedCount" type="integer" default="0"/>
+    <aura:attribute name="nameEditMode" type="boolean" default="false" />
+    <aura:attribute name="customlabelEditMode" type="boolean" default="false" />
+    <aura:attribute name="Savemode" type="Boolean" default="true" />
+    <aura:attribute name="ResetPage" type="boolean" default="false" />
+    
+        <div class="slds-align_absolute-left" style="height: 3rem;">
+            <b>TOTAL RECORDS : {!v.recordsCount}</b>
+        </div>
+    
+        <div class="slds-align_absolute-leftr" style="height: 2rem;">
+		  <span class="slds-badge">Selected Record:{!v.selectedCount}</span>
+    	</div>
+    
+        <div class="slds-grid slds-grid--align-end">
+              <div class="slds-grid--align-right" style="height: 3rem;">
+                 <button class="slds-button slds-button_neutral " onclick="{!c.addRecord}">New</button>
+                 <button class="slds-button slds-button_neutral " onclick="{!c.inlineEdit}">Edit</button>
+                 <button class="slds-button slds-button_neutral " onclick="{!c.deleteJsonRow}">Delete</button>			
+              </div>
+        </div>
+        
+    <!--cheackbox end-->
+    
+    <table class="slds-table slds-table_bordered slds-max-medium-table_stacked-horizontal slds-table_cell-buffer slds-table_col-bordered">
+        
+        <thead>
+            
+            <tr class="slds-text-title_caps">
+                
+                <!-- <th scope="col" class="slds-cell-buffer_left slds-cell-buffer_right">
+        <div class="slds-truncate" title="S.No">serialNumber
+         <button class="slds-button slds-button_icon slds-button_icon" title="Sort">                        
+          <span class="slds-assistive-text">Sort</span>
+         </button>
+        </div>
+       </th>--> 
+                <!-- cheackbox start-->
+                
+                <th style="width:3.25rem;" class="slds-text-align--right">
+				   <div class="slds-form-element">
+					  <div class="slds-form-element__control">
+						<label class="slds-checkbox">
+							<!--header checkbox for select all-->
+							<ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
+							<span class="slds-checkbox--faux"></span>
+							<span class="slds-form-element__label text"></span>
+						</label>
+					  </div>
+				   </div>
+				</th>
+                
+                <!-- cheackbox end-->
+                
+                <th scope="col" class="slds-cell-buffer_left slds-cell-buffer_right">
+                    <div class="slds-truncate" title="Field API Label">Field API Label
+                        <button class="slds-button slds-button_icon slds-button_icon" title="Sort">                        
+                            <span class="slds-assistive-text">Sort</span>
+                        </button>
+                    </div>
+                </th>
+                <th scope="col" class="slds-cell-buffer_left slds-cell-buffer_right">
+                    <div class="slds-truncate" title="Field API">Field API
+                        <button class="slds-button slds-button_icon slds-button_icon" title="Sort">                        
+                            <span class="slds-assistive-text">Sort</span>
+                        </button>
+                    </div>
+                </th>
+                <th scope="col" class="slds-cell-buffer_left slds-cell-buffer_right">
+                    <div class="slds-truncate" title="Custom Label">Custom Label
+                        <button class="slds-button slds-button_icon slds-button_icon" title="Sort">                        
+                            <span class="slds-assistive-text">Sort</span>
+                        </button>
+                    </div>
+                </th>
+                
+                
+                <th scope="col" class="slds-cell-buffer_left slds-cell-buffer_right">
+                    <div class="slds-truncate" title="Object-Type">Object-Type
+                        <button class="slds-button slds-button_icon slds-button_icon" title="Sort">                        
+                            <span class="slds-assistive-text">Sort</span>
+                        </button>
+                    </div>
+                </th>
+                
+                
+                <th scope="col" class="slds-cell-buffer_left slds-cell-buffer_right">
+                    <div class="slds-truncate" title="Field Type">Field Type
+                        <button class="slds-button slds-button_icon slds-button_icon" title="Sort">                        
+                            <span class="slds-assistive-text">Sort</span>
+                        </button>
+                    </div>
+                </th>
+                
+                <th scope="col" class="slds-cell-buffer_left slds-cell-buffer_right">
+                    <div class="slds-truncate" title="order">Sequence
+                        <button class="slds-button slds-button_icon slds-button_icon" title="Sort">                        
+                            <span class="slds-assistive-text">Sort</span>
+                        </button>
+                    </div>
+                </th>
+                
+                <th scope="col" class="slds-cell-buffer_left slds-cell-buffer_right">
+                    <div class="slds-truncate" title="Visible">Visible
+                        <button class="slds-button slds-button_icon slds-button_icon" title="Sort">                        
+                            <span class="slds-assistive-text">Sort</span>
+                        </button>
+                    </div>
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody aura:id="tbodyId">
+            <aura:iteration items="{!v.jsonDataList}" var="item" indexVar="index">
+                  
+                <tr class="slds-hint-parent">
+                    
+                    <!--cheackbox satrt-->
+                    
+                     <td scope="row" class="slds-text-align--right" style="width:3.25rem;">
+					  <div class="slds-form-element">
+						<div class="slds-form-element__control">
+							<label class="slds-checkbox">
+             <ui:inputCheckbox text="{!item.Id}" aura:id="boxPack" value="" change="{!c.checkboxSelect}"/>
+                                <span class="slds-checkbox--faux"></span>
+							   <span class="slds-form-element__label text"></span>
+				</label>
+			    </div>
+			    </div>
+                    </td>
+                    
+                    <!--cheackbox end-->
+                    
+                    <!--  <td  scope="row" data-label="serialNumber" class="slds-cell-buffer_left slds-cell-buffer_right">
+         <div class="slds-truncate" title="{!item.rowIndex}" >
+          {!item.rowIndex}
+         </div>
+        </td>-->
+                    
+                    <td  scope="row" data-label="fieldApiLabel" class="slds-cell-buffer_left slds-cell-buffer_right">
+                        <div class="slds-truncate" title="{!item.fieldApiLabel}" >
+                            {!item.fieldApiLabel}
+                        </div>
+                    </td>
+                    <td scope="row" data-label="fieldAPI" class="slds-cell-buffer_left slds-cell-buffer_right">
+                        <div class="slds-truncate" title="{!item.fieldAPI}">
+                            {!item.fieldAPI}
+                        </div>
+                    </td> 
+                    <td scope="row" data-label="customLabel" class="slds-cell-buffer_left slds-cell-buffer_right">
+                        <div class="slds-truncate slds-cell-edit" title="{!item.customLabel}">
+                            <aura:if isTrue="{!v.customlabelEditMode}">
+											<ui:inputtext value="{!item.customLabel}"/>
+                                      <aura:set attribute="else">
+                                        	<ui:outputtext value="{!item.customLabel}"/>
+                                      </aura:set>
+                            </aura:if>
+                        </div>
+                    </td>
+                    
+                    <td scope="row" data-label="customLabel" class="slds-cell-buffer_left slds-cell-buffer_right">
+                        <div class="slds-truncate" title="{!item.objectLable}">
+                            {!item.objectLable}
+                        </div>
+                    </td>
+                    <td scope="row" data-label="fieldType" class="slds-cell-buffer_left slds-cell-buffer_right">
+                        <div class="slds-truncate" title="{!item.fieldType}">
+                            {!item.fieldType}
+                        </div>
+                    </td> 
+                    
+                    <td scope="row" data-label="order" class="slds-cell-buffer_left slds-cell-buffer_right">
+                            <div class="slds-truncate slds-cell-edit" title="{!item.order}">
+                                   	<aura:if isTrue="{!v.nameEditMode}">
+												<ui:inputtext value="{!item.order}"/>
+                                      <aura:set attribute="else">
+                                        		<ui:outputtext value="{!item.order}"/>
+                                     </aura:set>
+                               		</aura:if>
+                            </div>
+                   </td>
+
+                    <td scope="row" data-label="visible" class="slds-cell-buffer_left slds-cell-buffer_right">
+                        <div class="slds-truncate" title="{!item.visible}">
+                            {!item.visible}
+                        </div>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+   
+    <div class="slds-align_absolute-center" style="height: 3rem;">
+          	<aura:if isTrue="{!v.Savemode}">
+				<button class="slds-button slds-button_neutral " onclick="{!c.Saverows}" disabled="True" default="false">Save</button>
+        		<button class="slds-button slds-button_neutral " event ="force:refreshView" onclick="{!c.Cancel}" disabled="True" default="false">Cancel</button>
+        	<aura:set attribute="else">
+             	<button class="slds-button slds-button_neutral " onclick="{!c.Saverows}" disabled="false" default="false">Save</button>
+        		<button class="slds-button slds-button_neutral " event ="force:refreshView" onclick="{!c.Cancel}" disabled="false" default="false">Cancel</button>
+            </aura:set>
+        </aura:if>    
+    </div>
+</aura:component>

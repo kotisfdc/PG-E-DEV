@@ -1,0 +1,5 @@
+<design:component >
+    <design:attribute name="objectList" label="Related List" Datasource="apex://DesignComponentRelatedlist" />
+    <design:attribute name="objectName" label="Field set" Datasource="apex://fieldsOfDesignComponent" />
+    
+</design:component>

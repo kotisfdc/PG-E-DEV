@@ -1,0 +1,15 @@
+.THIS input{
+    border-width: 0;
+    padding-top: 0px;
+    padding-left: 11px;
+    line-height: 12px;
+    height: 25px;
+}
+.THIS input::selection {
+    background: white;
+    text-shadow: none;
+    color: none;
+}
+.THIS .slds-icon-text-default {
+  fill: none !important;
+}

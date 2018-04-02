@@ -1,0 +1,3 @@
+<design:component >
+    <design:attribute name="repdsb" label="Reports And DashBoards" Datasource="apex://ListOfReports" />
+</design:component>

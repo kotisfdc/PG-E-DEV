@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Event template" >
+    <aura:attribute name="portfolioList" type="List" default="[]"/> <!-- JO_Wrapper.PortfolioViews[] -->
+</aura:event>

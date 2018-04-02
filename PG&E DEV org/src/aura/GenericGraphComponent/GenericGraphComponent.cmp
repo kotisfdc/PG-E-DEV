@@ -1,0 +1,7 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,force:hasSObjectName" 
+                access="global" >
+     <aura:attribute name="repdsb" type="String"/>
+    <div>
+ <iframe src="{!'https://pespge03-dev-ed--c.na78.visual.force.com/apex/GenericVfPage?id='+ v.repdsb}" width="25%" height="100%;" frameBorder="0" style="background-color:white;height: 500px;width: -webkit-fill-available;"/>
+   </div> 
+</aura:component>

@@ -1,0 +1,31 @@
+.THIS .slds-tabs_default__item {
+   text-transform: capitalize !important;
+}
+
+.THIS .slds-button--icon-more{
+   background-color: #fafaf9;
+    border: none;
+    margin-top: -7px;
+    height: 24px;
+   
+}
+
+.THIS .pointer-on-bars .dxc-series rect {
+    cursor: pointer;
+}
+
+.THIS .button-container {
+    text-align: center;
+    height: 40px;
+    position: absolute;
+    top: 7px;
+    left: 0px;
+}
+.THIS .dx-button-has-icon .dx-button-content {
+    padding: 0px !important;
+}
+.THIS .dx-button-has-icon .dx-icon {
+    width: 12px;
+    height: 14px;
+    font-size: 11px;
+}

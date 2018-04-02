@@ -1,0 +1,8 @@
+<design:component >
+    <design:attribute name="objectList" label="Related List" Datasource="apex://custompicklist" />
+    <design:attribute name="fieldsetName" label="Field set" />
+    <design:attribute name="customdisplay" label="Fields to display" />
+    <design:attribute name="limit" label="Row Limit"/>
+    <design:attribute name="sortFileds" label="Field to Sort" />
+    
+</design:component>

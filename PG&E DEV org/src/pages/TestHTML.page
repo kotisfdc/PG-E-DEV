@@ -1,0 +1,14 @@
+<apex:page controller="JO_Custom_Email" action="{!emailHtmldat}"  lightningStylesheets="true" sidebar="false" showHeader="false" >
+<apex:form >
+
+    <!--<apex:commandButton value="Check" title="Check" action="{!rendereddata}" reRender="pb"/>-->
+    <apex:pageBlock id="pb">
+        
+        	<apex:inputTextarea value="{!cachedTitle}" richText="true"/>
+       
+    </apex:pageBlock>
+    
+</apex:form>
+    
+  
+</apex:page>

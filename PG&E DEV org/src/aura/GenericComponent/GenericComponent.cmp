@@ -1,0 +1,36 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,force:hasSObjectName" 
+                controller='DynamicBindingDemoController' access="global" >
+    						
+    <!-- call the doInit method to load the list of All the Available Objects into the Org -->
+     <aura:attribute name="ObjectLabel" type="string" />
+     <aura:attribute name="ActrecCount" type="integer" default="0" />
+    
+     <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="objectList" type="string" />
+ <aura:attribute name="fieldsetName" type="string" />
+    <aura:attribute name="objectName" type="string" />
+    <aura:attribute name="recCount" type="integer" />
+    <aura:attribute name="isSending" type="boolean" />
+    <aura:attribute name="customdisplay" type="string" />
+    <aura:attribute name="limit" type="Integer" default="10"/>
+    <aura:attribute name="sortFileds" type="string" />
+    <aura:handler name='init' value='{!this}' action='{!c.doInit}' />
+  
+        <div class="slds-grid slds-wrap" style="width:100%">
+            <div style="margin-bottom:10px;">
+             
+            <b><lightning:icon iconName="custom:custom62" alternativeText="Configure" size="small"/>&nbsp;&nbsp;{!v.ObjectLabel} &nbsp;({!v.ActrecCount})</b>
+            </div> 
+           
+            <ui:scrollerWrapper class="scrollerSize">
+                
+                     <table class="slds-table slds-table--bordered slds-table--cell-buffer" style="width:100%">
+                    <div id="{!v.objectList}" aura:id='sfdcDiv'>
+                        
+                    </div>
+                    </table>
+                
+            </ui:scrollerWrapper>
+        </div>
+   
+</aura:component>

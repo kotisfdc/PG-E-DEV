@@ -1,0 +1,29 @@
+<aura:component controller="JO_CustomEmailAttachments" implements="force:appHostable" >
+    <aura:attribute name="attachmentId" type="List"/>
+    <aura:attribute name="decidervar" type="Boolean"  />
+    <aura:attribute name="EmialMastId" type="String" />
+    <aura:attribute name="notifattach" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doint}"/>
+    <aura:attribute name="selectedRecord" type="Attachment[]"  />
+    <aura:attribute name="allJobOwnerRecords"  type="Attachment[]"   />
+    
+    <aura:handler event="c:JO_NewAttchementId" action="{!c.fetchnewAttchement}"/>
+	<aura:registerEvent name="samComponentEvent" type="c:JO_CustomEmailAttachmentsList"/>
+    
+    <div class="slds-m-around--xxsmall">
+        <div aura:id="searchRes" class="slds-form-element slds-lookup slds-is-close" data-select="multiple">
+            <div class="slds-form-element__control">
+                <div class="slds-input-has-icon slds-input-has-icon--right">                
+                    <div aura:id="lookup-pill" class="slds-pill-container slds-show" style="background-color: rgb(243, 242, 242)" >
+                        <aura:iteration items="{!v.selectedRecord}" var="card" indexVar="iVar">
+                            <span class="slds-pill" >
+                                <span class="slds-pill__label" >&nbsp;  {!card.Name} &nbsp;  </span> 
+                                <lightning:buttonIcon name="{!iVar}" iconName="utility:close" alternativeText="close" variant="bare" onclick="{!c.clear}"/>                       
+                            </span>
+                        </aura:iteration>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

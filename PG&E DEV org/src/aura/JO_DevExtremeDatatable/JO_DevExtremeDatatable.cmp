@@ -1,0 +1,22 @@
+<aura:component controller="JO_Portfolio" implements="force:appHostable,flexipage:availableForAllPageTypes" access="GLOBAL">
+	<ltng:require scripts='/resource/PGE/pagtable/jquery.min.js,/resource/PGE/pagtable/dx.all.js,/resource/PGE/pagtable/jszip.min.js'
+                  styles='/resource/PGE/pagtable/dx.common.css,/resource/PGE/pagtable/dx.carmine.css,/resource/PGE/pagtable/dx.spa.css' 
+                  afterScriptsLoaded="{!c.scriptsLoaded}"/>
+    
+    <aura:attribute name="sObjectName" type="String"/>
+    <aura:attribute name="fieldSetName" type="String"/>
+    <aura:attribute name="fieldSetValues" type="List"/>
+    <aura:attribute name="tableRecords" type="List"/>
+    <aura:attribute name="criteriafield" type="String" default="Jb_Owner__c"/>
+    
+    <aura:attribute name="viewId" type="String" />   
+    <aura:attribute name="contactIds" type="String[]"/>
+    <aura:attribute name="userConfigRec" type="Customer_Config__c"/>
+    <aura:attribute name="notificationIds" type="String[]" />
+	<aura:attribute name="Notificationdetails" type="Object"/>
+    
+    <div class="slds-card" style="padding: 10px;">
+        <div id="gridContainer"></div>
+    </div>
+    
+</aura:component>

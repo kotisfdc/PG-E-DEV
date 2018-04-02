@@ -1,0 +1,6 @@
+<aura:event type="COMPONENT" description="">
+    <aura:attribute name="corpId" type="string"/>
+    <aura:attribute name="Con" type="Contact" />
+    <aura:attribute name="Conlist" type="User[]" />
+    
+</aura:event>

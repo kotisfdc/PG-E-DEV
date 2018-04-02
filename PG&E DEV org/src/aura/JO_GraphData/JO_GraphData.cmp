@@ -1,0 +1,97 @@
+<aura:component controller="JO_GraphData" implements="force:appHostable,flexipage:availableForAllPageTypes" access="GLOBAL">
+    <ltng:require scripts='/resource/JOGrid/pagtable/jquery.min.js,/resource/JOGrid/pagtable/jszip.min.js,/resource/JOGrid/pagtable/dx.all.js'
+                  styles='/resource/JOGrid/pagtable/dx.common.css,/resource/JOGrid/pagtable/dx.carmine.css,/resource/JOGrid/pagtable/dx.softblue.css'
+                  afterScriptsLoaded="{!c.scriptsLoaded}"/>
+    <aura:attribute name="graphtest" type="Integer" />
+    <aura:attribute name="count" type="Integer" />
+    <aura:attribute name="jobOwnerIds" type="List"/>
+    <aura:attribute name="body" type="String"/>
+    <aura:attribute name="loggedInContact" type="String" />   
+    <aura:attribute name="dashboardRec" type="Customer_Config__c" /> 
+    <aura:attribute name="isStatusChanged" type="boolean" default="false" />  
+    <aura:attribute name="selectedStatus" type="String"/>
+    <aura:attribute name="checkload" type="boolean" default="false"/>
+    <aura:attribute name="totalcount" type="Integer" />
+    <aura:attribute name="hiddencount" type="Integer" />
+    <aura:attribute name="OutStanding" type="String" />
+    <aura:attribute name="Division" type="String" />
+    <aura:attribute name="Agency" type="String" />
+    <aura:attribute name="renderCharts" type="boolean" default="false"/> 
+    <aura:attribute name="permittsByOutstandingLabel" type="boolean" default="false"/> 
+    <aura:attribute name="PermittsByDivisionLabel" type="boolean" default="false"/> 
+    <aura:attribute name="PermittsByAgencyLabel" type="boolean" default="false"/> 
+    <aura:attribute name="projects" type="boolean" default="true" /> 
+    <aura:handler event="c:JO_GlobalFilterEvent" action="{!c.filterAction}"/> 
+    <aura:handler event="c:JO_PassSelectedStatus" action="{!c.fetchNotificationIds}"/>
+    <aura:handler name="chartEvnt" event="c:JO_ChartEvent" action="{!c.filterAction}" />    
+    <aura:handler name="change" value="{!v.isStatusChanged}" action="{!c.filterAction}" />
+    <aura:dependency resource="markup://c:JO_HelpModel" />
+    <aura:dependency resource="markup://c:JO_GraphConfig" />
+    <aura:attribute name="countval" type="decimal">
+    </aura:attribute>
+    
+    <ul class="slds-tabs_default__nav" role="tablist">
+        <li class="dx-field-label" style="padding: 0px 0px 0px 0;width: 100%;" title="Job Status" role="presentation"><!--slds-tabs_default__item slds-text-body_regular slds-is-active-->
+            <aura:if isTrue="{!v.permittsByOutstandingLabel}">
+                {!v.OutStanding}
+            </aura:if>
+            <aura:if isTrue="{!v.PermittsByDivisionLabel}">
+                {!v.Division}
+            </aura:if>
+            <aura:if isTrue="{!v.PermittsByAgencyLabel}">     
+                {!v.Agency}
+            </aura:if>
+            <aura:if isTrue="{!v.projects}"> 
+                Projects by Status
+            </aura:if>
+            : Total({!v.totalcount}) Visible({!v.count}) Hidden({!v.hiddencount})
+        </li>   
+    </ul>
+    
+    <div class=" slds-float_right slds-is-static" style="margin-top: -1.3rem">
+        <ul  class="slds-tabs_default__nav" role="tablist">
+            <li>               
+                <lightning:buttonMenu variant="bare" onselect="{!c.handleMenuSelect}" menuAlignment="right" >
+                    <lightning:menuItem label="{!v.OutStanding}" value="Permits by Outstanding" aura:id="out"/>                     
+                    <lightning:menuItem label="{!v.Division}" value="Permits by Division" aura:id="divis"/>                          
+                    <lightning:menuItem label="{!v.Agency}" value="Permits by Agency" aura:id="agen"/>                     
+                </lightning:buttonMenu>              
+            </li>
+            <li>
+                <lightning:buttonIcon iconName="utility:help"  alternativeText="Help" variant="bare" onclick="{!c.openModelTask}"/>
+            </li>
+            <li>
+                <aura:if isTrue="{!v.projects}">
+                    <aura:renderIf isTrue="{!v.renderCharts}">
+                        <div align="right">
+                            <lightning:buttonIcon iconName="utility:chart" alternativeText="Toggle to Pie Chart" variant="bare" onclick="{!c.togglePieChart}"/>
+                        </div>
+                        <aura:set attribute="else">
+                            <div align="right">
+                                <lightning:buttonIcon iconName="utility:metrics" alternativeText="Toggle to Bar chart" variant="bare" onclick="{!c.toggleBarChart}"/>
+                            </div>
+                        </aura:set>        
+                    </aura:renderIf>  
+                </aura:if>
+            </li>
+            <li><lightning:buttonIcon iconName="utility:settings"  alternativeText="Configuration" variant="bare" onclick="{!c.openGraphConfig}"/></li>
+        </ul>
+    </div>
+    <aura:if isTrue="{!v.projects}">
+        <aura:renderIf isTrue="{!v.renderCharts}">
+            <div id="containerBar" style="height:240px;max-width:97%;"></div>            
+            <aura:set attribute="else">
+                <div id="containerPie" style="height:240px;max-width:97%;"> </div>
+            </aura:set>
+        </aura:renderIf>
+    </aura:if>    
+    <div id="Outstandingchart1" style="max-width:97%;"/> 
+     <div id="Outstandingdivchart1" style="max-width:97%;"/> 
+    <div aura:id="displayGraphConfigModal" >
+ <div id="backButton" class="button-container" style="height:20px;top: 45px;" ></div>    </div>
+    <div aura:id="ModalDialogPlaceholder" />
+    <aura:attribute name="toggleSpinner" type="Boolean"/>
+    <aura:if isTrue="{!v.toggleSpinner}">
+        <lightning:spinner variant="brand"  size="large" />
+    </aura:if>
+</aura:component>

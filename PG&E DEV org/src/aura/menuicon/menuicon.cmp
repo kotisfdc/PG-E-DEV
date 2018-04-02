@@ -1,0 +1,11 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="GLOBAL">
+   <!-- <ltng:require scripts='/resource/Highchart/PGE/jquery-3.2.1.min.js'/>
+    <ltng:require scripts='/resource/Highchart/PGE/highcharts.js'/>    -->
+    <ltng:require scripts='/resource/JOGrid/pagtable/jquery.min.js,/resource/JOGrid/pagtable/jszip.min.js,/resource/JOGrid/pagtable/dx.all.js'
+                  styles='/resource/JOGrid/pagtable/dx.common.css,/resource/JOGrid/pagtable/dx.carmine.css,/resource/JOGrid/pagtable/dx.softblue.css'
+                   afterScriptsLoaded="{!c.scriptsLoaded}"/>
+    
+    <div id="Outstandingdivchart1" style="max-width:97%;height:240px;"/> 
+   
+    
+</aura:component>

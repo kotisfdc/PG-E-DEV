@@ -1,0 +1,36 @@
+<aura:component controller="DatatableAdvancedController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="GLOBAL">
+    <!--<ltng:require styles="{!$Resource.SLDS0212 +'/assets/styles/salesforce-lightning-design-system.min.css'}"/>-->
+    <ltng:require scripts='/resource/JOGrid/pagtable/jquery.min.js,/resource/JOGrid/pagtable/jszip.min.js,/resource/JOGrid/pagtable/dx.all.js'
+                  styles='/resource/JOGrid/pagtable/dx.common.css,/resource/JOGrid/pagtable/dx.carmine.css,/resource/JOGrid/pagtable/dx.softblue.css'
+                   afterScriptsLoaded="{!c.scriptsLoaded}" />
+    
+    <aura:attribute name="Accountdetails" type="Object"/>
+    <aura:attribute name="Contactdetails" type="Object"/>
+    
+    <aura:attribute name="filtervalue" type="Object"/>
+    
+    <aura:registerEvent name="chartEvent" type="c:ChartEvent"/>
+    <aura:handler event="c:ChartEvent" action="{!c.savefilter}"/>
+    
+    <!--<div aura:id="toatMsg" />
+    <div id="tabs">
+        <div class="tabs-container"></div>
+            <div class="slds-card" style="padding: 10px;">
+                <div id="gridContainer1"></div>
+                <div id="popupContainer1"></div>
+            </div>
+    </div>-->
+    <div style="padding-top:100px;"></div>
+    <div class="slds-card" style="padding: 10px;">
+       <div id="gridContainer"></div>
+        <div id="popupContainer"></div>
+        <div class="dx-field">
+                <div class="dx-field-label"></div>
+                <div class="dx-field-value">
+                    <div id="success"></div>
+                </div>
+            </div>
+    </div>
+  
+    
+</aura:component>

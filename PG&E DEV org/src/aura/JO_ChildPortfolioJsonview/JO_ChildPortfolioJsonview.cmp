@@ -1,0 +1,25 @@
+<aura:component >
+  <!-- on component load, fetch picklist values dynamically from apex controller -->   
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <!--declare aura attributes-->
+    <aura:attribute name="objInfoForPicklistValues" type="Customer_Config__c" default="{sobjectType : 'Customer_Config__c'}" description="object information to fetch picklist values"/>
+    <aura:attribute name="fieldType" type="string[]" description="store picklist options values"/> 
+    <aura:attribute name="visible" type="boolean"/>
+    <aura:attribute name="order" type="string"/>
+	<aura:attribute name="Object-Type" type="string"/>
+    <aura:attribute name="singleRec" type="sobject" default="{'sobjectType' : 'Customer_Config__c',
+                                                               'Name' : '',
+                                                               'Object-Type' : '',
+                                                               'fieldType' :'',
+                                                               'Visible': '',
+															   'order': ''
+                                                               }"/>
+    <aura:attribute name="nameEditMode" type="boolean" default="false" />
+    <aura:attribute name="ratingEditMode" type="boolean" default="false" />
+    
+    <!--Table Row Start-->  
+
+
+
+</aura:component>

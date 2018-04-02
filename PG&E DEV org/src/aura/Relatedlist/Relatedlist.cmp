@@ -1,0 +1,25 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,force:hasSObjectName" 
+                controller='Relatedlistclass' access="global" >
+    <!-- call the doInit method to load the list of All the Available Objects into the Org -->
+    <aura:handler name='init' value='{!this}' action='{!c.doInit}' />
+     <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="objectList" type="string" />
+    <aura:attribute name="objectName" type="string" />
+    <aura:attribute name="isSending" type="boolean" />
+  <!--  <c:spinner /> --> 
+    <div class="slds-m-around_small">
+      
+        <div class="slds-grid slds-wrap">
+           
+            <ui:scrollerWrapper class="scrollerSize">
+                <div class="slds-size_2-of-2">
+                     <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+                    <div id='sfdctable' aura:id='sfdcDiv'>
+                        
+                    </div>
+                    </table>
+                </div>
+            </ui:scrollerWrapper>
+        </div>
+    </div>
+</aura:component>

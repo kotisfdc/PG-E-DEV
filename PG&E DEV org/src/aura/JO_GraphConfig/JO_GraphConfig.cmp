@@ -1,0 +1,58 @@
+<aura:component controller="JO_ConfigGraph" implements="force:appHostable,flexipage:availableForAllPageTypes" access="GLOBAL">
+    <aura:attribute name="listOptions" type="List" default="[]"/>
+    <aura:attribute name="defaultOptions" type="List" default="[]"/>    
+    <aura:attribute name="userConfigId" type="String"/>    
+    <aura:attribute name="loggedInContact" type="String" />
+    <aura:attribute name="jobOwnerIds" type="String[]"/>
+    <aura:attribute name="dashboardRec" type="Customer_Config__c" />
+    <aura:method name="doIntOnLoad" action="{!c.doInit}" access="GLOBAL"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:registerEvent name="chartEvnt" type="c:JO_ChartEvent" />
+    <aura:dependency resource="markup://c:JO_Toastmsg" />
+    <div class="demo-only"  style="height: 100%;">
+        <section  class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-modal__close" title="Close" onclick="{!c.closeModel}">
+                        <lightning:buttonIcon iconName="utility:close"/> 
+                        <span class="slds-assistive-text">Close</span>
+                    </button>            
+                    <h2 id="header99" class="slds-text-heading--medium" style="margin-bottom:-10px;">Chart Configuration</h2>
+                </header>
+                
+                <lightning:tabset variant="default">
+                    <lightning:tab label="Job Owner" class="slds-tabs_default__item slds-is-active">
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning:dualListbox aura:id="statusData" name="Statuses"
+                                           sourceLabel="Available Options" 
+                                           selectedLabel="Selected Options" 
+                                           options="{! v.listOptions }"
+                                           value="{! v.defaultOptions }"
+                                           onchange="{! c.handleChange }"                                           
+                                           />  
+                </div>
+                        </lightning:tab>
+                     <lightning:tab label="Permitting" class="slds-tabs_default__item slds-is-active">
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning:dualListbox aura:id="statusData" name="Statuses"
+                                           sourceLabel="Available Options" 
+                                           selectedLabel="Selected Options" 
+                                           options="{! v.listOptions }"
+                                           value="{! v.defaultOptions }"
+                                           onchange="{! c.handleChange }"                                           
+                                           />  
+                </div>
+                        </lightning:tab>
+             
+             
+                </lightning:tabset>
+                <footer class="slds-modal__footer">
+                    <lightning:button onclick="{!c.saveHandler}" label="Save" variant="brand" type="button" title="Save" />
+                    <lightning:button onclick="{!c.closeModel}" label="Close" variant="brand" type="button" title="Close" />
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+    
+</aura:component>

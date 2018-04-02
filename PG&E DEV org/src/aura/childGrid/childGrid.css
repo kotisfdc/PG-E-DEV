@@ -1,0 +1,52 @@
+.THIS {
+}
+
+.THIS #gridContainer {
+        height: 440px;
+        }
+        
+      .THIS #gridContainer1 {
+        max-height: 440px;
+        }
+        
+       .THIS .options {
+        padding: 20px;
+        margin-top: 20px;
+        background-color: rgba(191, 191, 191, 0.15);
+        }
+        
+       .THIS .caption {
+        font-size: 18px;
+        font-weight: 500;
+        }
+        
+       .THIS .option {
+        margin-top: 10px;
+        }
+        
+      .THIS .option > span {
+        margin-right: 10px;
+        }
+        
+      .THIS  .option > .dx-selectbox {
+        display: inline-block;
+        vertical-align: middle;
+        }
+        /* for tab style */
+       .THIS .content{
+        text-align: justify;
+        margin-top: 25px;
+        }
+       .THIS #tabs {
+        margin-top: 10px;
+        }
+        
+        .THIS .caption{
+        font-size: 16px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+        }
+        
+      .THIS .left-aligned {
+        text-align: left; 
+        }

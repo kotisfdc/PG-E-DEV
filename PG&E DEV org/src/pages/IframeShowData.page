@@ -1,0 +1,10 @@
+<apex:page controller="IframeshowData" showHeader="false" standardStylesheets="false">
+    <script>
+  alert('alert show after vf page reload');
+    alert(val);
+  </script>
+    Testing Text on vf page  
+    <apex:form >
+        <apex:outputText value="{!val}"/>
+    </apex:form>
+</apex:page>

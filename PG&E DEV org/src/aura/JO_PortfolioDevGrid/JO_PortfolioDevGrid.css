@@ -1,0 +1,51 @@
+.THIS {
+}
+.THIS #gridContainer {
+    max-height: 440px;
+    max-width:100%
+}
+.THIS .master-detail-caption {
+    padding: 0 0 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.THIS .options {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: rgba(191, 191, 191, 0.15);
+}
+
+.THIS .caption {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.THIS .option {
+    margin-top: 10px;
+}
+/* style for buttons */
+.THIS .dx-button-has-icon .dx-button-content {
+    padding: 1px;
+}
+.THIS .dx-tab-text{
+    color: #8c8c8c;
+    cursor: default;
+    float: right;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/*
+.THIS .option>span {
+    margin-right: 10px;
+}
+
+.THIS .option>.dx-selectbox {
+    display: inline-block;
+    vertical-align: middle;
+}
+.THIS .dx-pager .dx-pages .dx-selection, .dx-pager .dx-page-sizes .dx-selection {
+    background-color: rgba(55, 148, 225, 0.8);
+}*/

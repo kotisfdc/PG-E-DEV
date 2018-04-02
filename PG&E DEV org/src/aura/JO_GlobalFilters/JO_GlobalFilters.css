@@ -1,0 +1,37 @@
+.THIS .slds-size_1-of-4 {
+    text-align: right;
+}
+@media all and (min-width: 768px) {
+    .THIS .slds-size_1-of-4 {
+        display:block;
+    }
+}
+.THIS select.slds-select{
+    background: transparent;
+    width: 110%;
+}
+.THIS .slds-select_container:after{
+    right: -0.1rem;
+}
+.THIS .slds-select_container:before{
+    right: -0.1rem;
+}
+.THIS .dx-dropdowneditor-button-visible.dx-show-clear-button .dx-texteditor-input {
+    padding-top: 3%;
+}
+.THIS .slds-badge {
+    padding: 0.25rem .9rem !important;    
+    vertical-align: middle !important;
+}
+.THIS .slds-badge_inverse {
+    background-color: rgb(89, 109, 144) !important;
+    color: rgb(255, 255, 255) !important;
+}
+.THIS .syncCLS {    
+    background: #7f8de1;
+    color:  white;
+}
+.THIS .syncCLSError {    
+    background: rgb(205, 205, 205);
+    color:  white;
+}

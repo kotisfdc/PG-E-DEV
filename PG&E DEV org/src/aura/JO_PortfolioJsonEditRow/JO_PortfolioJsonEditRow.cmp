@@ -1,0 +1,138 @@
+<aura:component implements="force:appHostable" controller="JO_JSONAddRowsApex">
+			  <lightning:utilityBarAPI aura:id="utilitybar" />
+
+			<aura:attribute name="ptype" type="String[]" default="ORDERS,NOTIFICATIONS"/>
+			<aura:attribute name="selectedValue" type="String" />
+			<aura:attribute name="ObjectFieldsMetaData" type="LIST" />
+			<aura:attribute name="selectedFieldValue" type="String" />
+			<aura:attribute name="visibleType" type="String[]" default="TRUE, FALSE"/>
+			<aura:attribute name="selectedVisibleValue" type="String" />
+			<aura:attribute name="selectedFieldAPI" type="String" />
+			<aura:attribute name="selectedVisibleval" type="String" />
+			<aura:attribute name="customLabel" type="String" />
+			<aura:attribute name="fieldTypeVar" type="String" />
+    
+            <aura:attribute name="nameEditMode" type="boolean" default="false" />
+    		<aura:attribute name="orderEditMode" type="boolean" default="false" />
+    
+			<!-- <aura:attribute name="recordId" type="Id" /> -->
+			 <lightning:card title="" iconName="" footer="">
+				 <p class="slds-p-horizontal_small">
+					 
+			  <div class="slds-grid slds-wrap">
+		  <div class="slds-col slds-size_5-of-12">
+			  <span></span>
+              
+				<lightning:select name="Orderselect" 
+							  aura:id="selectedOrders"
+							  label="Object Type" 
+							  required="true" 
+							  messageWhenValueMissing="Did you forget to select a Object Type?" 
+							  value="{!v.selectedValue}"
+							  onchange="{!c.Itemselected}">
+
+                    <option value="">-- None --</option>
+				<aura:iteration items="{!v.ptype}" var="item">
+					<option value="{!item}" text="{!item}" selected="{!item.selected}" ></option>
+				</aura:iteration>        
+			</lightning:select>
+				  </div>
+			</div>
+
+		<div class="slds-grid slds-wrap">
+		  <div class="slds-col slds-size_5-of-12">
+			  <span></span> 
+				<lightning:select name="fieldselect" 
+							  aura:id="selectedfield"
+							  label="Object Field Label" 
+							  required="false"                        
+							  value="{!v.selectedFieldValue}" onchange="{!c.fieldItemselected}"
+							  >
+				<option value="">-- None --</option>
+				<aura:iteration items="{!v.ObjectFieldsMetaData}" var="item">
+					<option value="{!item.fieldapi}" text="{!item.fieldLabel}" selected="{!item.selected}" >
+					</option>
+				</aura:iteration>        
+			</lightning:select>
+					</div>
+				</div>
+		
+			<div>
+				<div class="slds-grid slds-wrap">
+		  <div class="slds-col slds-size_5-of-12">
+			  <span></span>
+				
+				<lightning:select name="Visibleselect" 
+							  aura:id="selectedVisible"
+							  label="Visible"                       
+							  value="{!v.selectedVisibleValue}" onchange="{!c.visibleItemselected}">
+                    
+				<option value="">-- None --</option>
+				<aura:iteration items="{!v.visibleType}" var="item">
+					<option value="{!item}" text="{!item}" selected="{!item.selected}" ></option>
+				</aura:iteration>        
+			</lightning:select>
+			</div>
+					
+				</div>
+			</div>
+				
+			<div>
+				
+					<div class="slds-grid slds-wrap">
+		  <div class="slds-col slds-size_5-of-12">
+			  <span></span>
+				<lightning:input type="number" label="Order" name="Order"/>
+				OBJECT Field API VALUE: <b><ui:outputText value="{!v.selectedFieldAPI}" /></b><br/>
+				OBJECT Field API LABEL  : <b><ui:outputText value="{!v.fieldTypeVar}" /></b>
+				
+			  
+						</div>
+				</div>
+				<div class="slds-form-element">
+					<div class="slds-grid slds-wrap">
+		  <div class="slds-col slds-size_5-of-12">
+			  <span></span>
+		 
+						
+		<label class="slds-form-element__label" for="select-01">Select fieldType</label>
+		<div class="slds-form-element__control">
+		<div class="slds-select_container">
+		<select class="slds-select" id="select-01">
+		<option value="">Field Type</option>
+		 <option>Referwnce</option>
+		<option>Number</option>
+			<option>String</option>
+			<option>pickList</option>
+		</select>
+			</div>
+			  </div>
+			
+		</div>
+			   
+		</div>
+					
+		</div>
+				 <div class="slds-grid slds-wrap">
+		  <div class="slds-col slds-size_5-of-12">
+			  <span></span>
+					
+				<lightning:input type="TEXT" label="Custom Label" value="{!v.customLabel}"/>
+					 </div>
+				</div>
+			</div>
+			<div><br/></div>
+			<div>
+				<div class="slds-grid slds-wrap">
+		  <div class="slds-col slds-size_5-of-12">
+			  <span></span>
+				<lightning:button variant="brand" label="Submit" onclick="{! c.submitForm }" />
+	  
+					</div>
+				</div>
+			</div>
+				
+				 </p>
+			</lightning:card>
+			   
+		</aura:component>

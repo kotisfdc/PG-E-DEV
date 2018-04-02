@@ -1,0 +1,85 @@
+<aura:component controller="JO_CustomEmailDocs" implements="force:appHostable,flexipage:availableForAllPageTypes"  >
+    <aura:attribute name="tempId" type="String" />
+    <aura:attribute name="EmialMastId" type="String" />
+    <aura:attribute name="recordsendId" type="String" /> 
+    <aura:attribute name="cusId" type="String"/>
+    <aura:attribute name="docList" type="JO_CustomEmailDocs.WrapperDocs[]" />
+    <aura:attribute name="selectedCount" type="integer" default="0"/>
+    <aura:attribute name="emaildoc" type="boolean" default="false" />
+    <aura:attribute name="customemail" type="boolean"  default="false" />
+    <aura:attribute name="attachmentList" type="List" /> 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:dependency resource="markup://c:JO_Toastmsg" />
+    <aura:if isTrue="{!v.emaildoc}" > 
+        <div class="slds-backdrop slds-backdrop--open">
+            <section  class="slds-modal slds-fade-in-open">
+                <div class="slds-m-around--xx-large slds-modal_large" style="width: 100% !important;">
+                    <div role="dialog" tabindex="-1" aria-labelledby="header99" class="slds-modal slds-fade-in-open ">
+                        <div class="slds-modal__container" style = "width: 25%; max-width: none; min-width: 23rem " >
+                            <div class="slds-modal__header">
+                                <button class="slds-button slds-modal__close slds-button__icon_large slds-button--icon-inverse" title="Close" onclick="{!c.close}">
+                                    X
+                                    <span class="slds-assistive-text">Close</span>
+                                </button>
+                                <h2 id="header99" class="slds-text-heading--medium">Documents Requried</h2>
+                            </div>
+                            <div style="margin-top: -10px;">
+                                <div class=" slds-table--header-fixed_container slds-modal__content slds-p-around--medium">
+                                    <div class="slds-scrollable_y" style="height:100%;">
+                                        <table class="slds-table slds-table_bordered slds-max-medium-table_stacked-horizontal slds-cell-wrap">
+                                            <thead>
+                                                <tr class="slds-text-title" style="font-size:15px;">
+                                                    <th style="width:3.25rem;" class="slds-text-align--left">
+                                                        <div class="slds-form-element">
+                                                            <div class="slds-form-element__control">
+                                                                <label class="slds-checkbox">
+                                                                    <!--header checkbox for select all-->
+                                                                    <ui:inputCheckbox aura:id="box3" change="{!c.selectAll}"/>
+                                                                    <span class="slds-checkbox--faux"></span>
+                                                                    <span class="slds-form-element__label text"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                    <th>
+                                                        <span class="slds-truncate"  title="Name"><b>Documents</b></span>      
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody> 
+                                                <aura:iteration items="{!v.attachmentList}" var="attachment" >
+                                                    <tr>
+                                                        <th scope="row" style="text-align: -webkit-left; ">
+                                                            <ui:inputCheckbox aura:id="Checkbox" value="{!attachment.checkBoxValue}" />
+                                                        </th> 
+                                                        <th class="slds-text-align_right " scope="col" style="text-align: -webkit-left; ">
+                                                            <div class="slds-truncate " title="">{!attachment.attachmentName}</div>
+                                                        </th>
+                                                    </tr>
+                                                </aura:iteration>
+                                            </tbody>
+                                        </table>                       
+                                    </div>                            
+                                </div>
+                            </div>
+                            <div class="slds-modal__footer">
+                                <div>
+                                    <div class="slds-text-align_right">
+                                        <lightning:button onclick="{!c.saveDocs}" label="Add" variant="brand" type="button" title="Add" />
+                                        <lightning:button onclick="{!c.close}" label="Close" variant="brand" type="button" title="Close" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+        <div aura:id="pfbody" />        
+    </aura:if>    
+    <aura:if isTrue="{!v.customemail}" > 
+        <c:JO_Custom_Email docList="{!v.docList}" tempId="{!v.tempId}" recordsendId="{!v.recordsendId}" EmialMastId="{!v.EmialMastId}" customerId="{!v.cusId}" />        
+    </aura:if>    
+    <div aura:id="toastMsg"/>
+</aura:component>
